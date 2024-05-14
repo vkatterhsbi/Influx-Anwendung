@@ -1,0 +1,383 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d32d72cc60a71938",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "MAIER",
+        "name": "Aktien-Kurse",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "319accab58a7f8d8",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "eeb221fb.ab27f",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "MAIER",
+        "name": "test",
+        "usetls": false,
+        "tls": "f7f39f4e.896ae",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "d50d0c9f.31e858",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "2ff2a476.a6d2ec",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "test 1.8 flux",
+        "usetls": false,
+        "tls": "d50d0c9f.31e858",
+        "influxdbVersion": "1.8-flux",
+        "url": "https://localhost:8086",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "6ca8bde.9eb2f44",
+        "type": "influxdb",
+        "hostname": "localhost",
+        "port": "8086",
+        "protocol": "https",
+        "database": "new_db",
+        "name": "",
+        "usetls": true,
+        "tls": "f7f39f4e.896ae",
+        "influxdbVersion": "1.x"
+    },
+    {
+        "id": "f7f39f4e.896ae",
+        "type": "tls-config",
+        "name": "local-tls",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "53329f54cdebb8a9",
+        "type": "stock-request",
+        "z": "f6f2187d.f17ca8",
+        "name": "Bitcoin",
+        "tickers": "BTC-USD",
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "b7f16ad923c931f6"
+            ]
+        ]
+    },
+    {
+        "id": "3cdc912bcba5304d",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "53329f54cdebb8a9",
+                "96ac6514b57ad6f4"
+            ]
+        ]
+    },
+    {
+        "id": "b7f16ad923c931f6",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "Bitcoin",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "319accab58a7f8d8",
+        "x": 520,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "96ac6514b57ad6f4",
+        "type": "stock-request",
+        "z": "f6f2187d.f17ca8",
+        "name": "Global X DAX Germany ETF",
+        "tickers": "DAX",
+        "x": 280,
+        "y": 340,
+        "wires": [
+            [
+                "7bb4c448172259f0"
+            ]
+        ]
+    },
+    {
+        "id": "7bb4c448172259f0",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "DAX",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "319accab58a7f8d8",
+        "x": 530,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "381d25ab31ae1b3b",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "Bitcoin",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "319accab58a7f8d8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 540,
+        "wires": [
+            [
+                "85ab2e2c7f69b1b9"
+            ]
+        ]
+    },
+    {
+        "id": "806df750b3756f7e",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "DAX",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "319accab58a7f8d8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 660,
+        "wires": [
+            [
+                "8fafcbfd64dc10ba"
+            ]
+        ]
+    },
+    {
+        "id": "85ab2e2c7f69b1b9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Konvertierung",
+        "func": "var price = msg.payload.price\nvar exchange = msg.payload.exchange\nvar timestamp = msg.payload.time\n\n\nmsg.payload = [\n    {\n        measurement: \"btc_prices\",\n        fields: {\n            price: price,\n            exchange: exchange,\n            time: timestamp\n        },\n        tags: {\n            location: \"broker2\"\n        },\n        timestamp: new Date()\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 540,
+        "wires": [
+            [
+                "dc7bdefe0b8275ae",
+                "6251f0f4547d791f"
+            ]
+        ]
+    },
+    {
+        "id": "8fafcbfd64dc10ba",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Konvertierung",
+        "func": "var price = msg.payload.price\nvar exchange = msg.payload.exchange\nvar timestamp = msg.payload.time\n\n\nmsg.payload = [\n    {\n        measurement: \"dax_prices\",\n        fields: {\n            price: price,\n            exchange: exchange,\n            time: timestamp\n        },\n        tags: {\n            location: \"broker1\"\n        },\n        timestamp: new Date()\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 660,
+        "wires": [
+            [
+                "e8a478f496ae7218",
+                "d77138719d43bb1c"
+            ]
+        ]
+    },
+    {
+        "id": "e8a478f496ae7218",
+        "type": "influxdb batch",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "d32d72cc60a71938",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "DAX",
+        "database": "MAIER",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 550,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "dc7bdefe0b8275ae",
+        "type": "influxdb batch",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "d32d72cc60a71938",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "Bitcoin",
+        "database": "MAIER",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 560,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6251f0f4547d791f",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "d77138719d43bb1c",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "b267319c3e364c40",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 280,
+        "wires": []
+    }
+]
